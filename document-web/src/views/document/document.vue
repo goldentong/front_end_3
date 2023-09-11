@@ -24,9 +24,14 @@
             <el-table-column show-overflow-tooltip label="name" align="center"
                              prop="name"></el-table-column>
             <el-table-column show-overflow-tooltip label="age" align="center"
-                             prop="backInfo"></el-table-column>
+                             prop="age"></el-table-column>
             <el-table-column show-overflow-tooltip label="gender" align="center"
-                             prop="backInfo"></el-table-column>
+                             prop="gender">
+              <template slot-scope="scope">
+                <span v-if="scope.row.gender === 0">male</span>
+                <span v-else>female</span>
+              </template>
+            </el-table-column>
             <el-table-column show-overflow-tooltip label="roomNumber" align="center"
                              prop="backInfo"></el-table-column>
             <el-table-column show-overflow-tooltip label="operate" width="260" align="center">
@@ -45,7 +50,7 @@
       </div>
     </div>
     <el-dialog :visible.sync="documentDialog.visible" :close-on-click-modal="false" width="40%"
-               :title="!isEdit && !isInfo ? 'add resident file' :  !isInfo ? 'Editing personnel profiles' : 'Personnel profiles info'">
+               :title="!isEdit && !isInfo ? 'add resident file' :  !isInfo ? 'Editing personnel profiles' : 'profile information'">
       <el-form ref="documentForm" label-position="right" label-width="200px" :model="documentDialog.formData"
                :rules="rules" style="height: 480px;overflow-y: auto;padding: 0 20px;" :disabled="isInfo">
         <el-form-item label="ResidentName：" prop="name">
@@ -84,14 +89,14 @@
                        :label="item.name"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Favorite：" prop="favoriteIds">
+        <el-form-item label="Hobbies：" prop="favoriteIds">
           <el-select filterable  v-model="documentDialog.formData.favoriteIds" placeholder="Please select Favorite" clearable style="width: 100%;" multiple>
             <el-option v-for="item in favorites" :key="item.id" :value="item.id"
                        :label="item.name"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
-      <div class="dialog-btn">
+      <div class="dialog-btn" v-if="!isInfo">
         <el-button @click="documentDialog.visible = false">Cancel</el-button>
         <el-button type="primary" @click="saveOrUpdateData" :loading="loading">Save</el-button>
       </div>
@@ -277,9 +282,9 @@ export default {
           roomNumber: '',
           pictureUrl: '',
           backInfo: '',
-          languageIds: '',
+          languageIds: [],
           languageNames: '',
-          favoriteIds: '',
+          favoriteIds: [],
           favoriteNames: ''
         }
       } else {

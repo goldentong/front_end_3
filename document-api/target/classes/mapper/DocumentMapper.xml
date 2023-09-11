@@ -6,6 +6,9 @@
     <resultMap id="BaseResultMap" type="com.dr.bean.Document">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="gender" property="gender"/>
+        <result column="room_number" property="roomNumber"/>
         <result column="picture_url" property="pictureUrl"/>
         <result column="back_info" property="backInfo"/>
         <result column="language_ids" property="languageIds"/>

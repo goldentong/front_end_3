@@ -18,6 +18,12 @@ public class Document {
 
     private String name;
 
+    private Integer age;
+
+    private Integer gender;
+
+    private String roomNumber;
+
     private String pictureUrl;
 
     private String backInfo;

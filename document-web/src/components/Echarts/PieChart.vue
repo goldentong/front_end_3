@@ -71,7 +71,15 @@ export default {
             radius: ['40%', '60%'],
             center: ['50%', '50%'],
             bottom: 0,
-
+            data: [
+              { value: this.chartData[0], name: '周一' },
+              { value: this.chartData[1], name: '周二' },
+              { value: this.chartData[2], name: '周三' },
+              { value: this.chartData[3], name: '周四' },
+              { value: this.chartData[4], name: '周五' },
+              { value: this.chartData[5], name: '周六' },
+              { value: this.chartData[6], name: '周日' }
+            ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600
           }
